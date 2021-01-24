@@ -2,10 +2,10 @@
 # Copyright (c) 2013, 2014, 2017 dbohdan. All rights reserved.
 # License: BSD (3-clause). See the file LICENSE.
 import sys
-if sys.version_info >= (3, 2):
-    from html import escape
-else:
-    from cgi import escape
+#if sys.version_info >= (3, 2):
+#    from html import escape
+#else:
+#    from cgi import escape
 
 
 def _tag_with_attrs(tag, attrs):
@@ -16,7 +16,7 @@ def _tag_with_attrs(tag, attrs):
 def start(completedoc=False, title='', attrs={}):
     s = ''
     if completedoc:
-        s += ('<!DOCTYPE html>\n<html>\n<head><title>' + escape(title) +
+        s += ('<!DOCTYPE html>\n<html>\n<head><title>' + title +
               '</title></head>\n<body>')
     s += _tag_with_attrs('table', attrs) + '\n'
     return s
@@ -37,7 +37,7 @@ def row(r, headerrow=False, attrs={}):
 
     res = [_tag_with_attrs('tr', attrs)]
     for cell in r:
-        res.append(_tag_with_attrs(tag, attrs) + escape(cell) +
+        res.append(_tag_with_attrs(tag, attrs) + cell +
                    '</' + tag + '>')
     res.append('</tr>\n')
 
